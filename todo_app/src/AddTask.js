@@ -54,7 +54,7 @@ const AddTask = () => {
 
         //first remove the white spaces from start and end of the task
         inputdata = inputdata.trim();
-        alert(inputdata);
+        // alert(inputdata);
         // check if task is present in the storage
         if (taskobj.includes(inputdata)) {
             alert('This Task is already present in TODO list');
