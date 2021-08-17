@@ -1,6 +1,28 @@
 import React from 'react';
 
 
+let deleteAllTask = () => {
+  // alert('checking if the button is working or not ');
+
+  //check if data is present is present in the local storage 
+  if (localStorage.getItem('localstorage') == null) {
+    alert('nothing to delete');
+    return;
+  }
+
+  let finaldelete = window.confirm("entire task will be deleted!! still want to delet all task??");
+  if (finaldelete === true) {
+
+    // delete entire local storage
+    localStorage.clear();
+
+    // refresh the page
+    window.location.reload();
+  }
+}
+
+
+
 const TodoUi = (props) => {
 
   return (
@@ -17,10 +39,8 @@ const TodoUi = (props) => {
               <button type="button" className="btn btn-success mr-2" id="addtaskbtn" onClick={props.addTask}>
                 Add Task
               </button>
-              <button type="button" className="btn btn-success mr-2" id="savetaskbtn" style={{ display: "none" }}>
-                Save Task
-              </button>
-              <button type="button" id="deleteallbtn" className="btn btn-danger">
+
+              <button type="button" id="deleteallbtn" className="btn btn-danger" onClick={deleteAllTask}>
                 Delete All
               </button>
             </div>
