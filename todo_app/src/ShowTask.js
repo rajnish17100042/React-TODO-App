@@ -1,6 +1,47 @@
 import React, { useState } from 'react';
 
 
+let editTask = (index, task) => {
+    // alert(`The task you want to delete is:${task} and the index of this task is:${index} `);
+    alert(`current task is : "${task}" `);
+    const newtask = window.prompt("Enter the Edited task:");
+    //remove white spaces from start and end 
+    newtask = newtask.trim();
+    console.log(newtask);
+}
+
+
+
+
+let deleteTask = (index) => {
+    // alert(index);
+    // alert(`getting the index of the task to be deleted  index is:${index}`);
+
+    //before deleting the task confirm once again 
+
+    let finaldelete = window.confirm("Have you completed the task?? want to delete??");
+
+    if (finaldelete == true) {
+        let storedtask = localStorage.getItem('localstorage');
+        let taskobj = JSON.parse(storedtask);
+
+        //no need to chech if storedtask is null
+        // alert(taskobj);
+        // alert(typeof storedtask); //object 
+
+        //  delete the task with the help of index parameter
+        taskobj.splice(index, 1); // return the deleted element  ...original array is changed
+        // alert(taskobj); just checking if task is deleted
+
+        // now send the taskobj  to the lolcal storage
+        localStorage.setItem('localstorage', JSON.stringify(taskobj));
+
+
+
+    }
+
+}
+
 const ShowTask = () => {
 
     // get all the task from local storage
@@ -24,8 +65,10 @@ const ShowTask = () => {
                                 <tr>
                                     <td>{index + 1}</td>
                                     <td>{task}</td>
-                                    <td><button type="button" class="text-primary">Edit</button></td>
-                                    <td><button type="button" class="text-danger">Delete</button></td>
+                                    <td><button type="button" class="text-primary" onClick={() => { editTask(index, task) }}>Edit</button></td>
+                                    {/* <td><button type="button" class="text-danger" onClick={deleteTask(index)}>Delete</button></td> */}
+                                    {/* we need to use arrow function if we want to send some data as an argument */}
+                                    <td><button type="button" class="text-danger" onClick={() => { deleteTask(index) }}>Delete</button></td>
                                 </tr>
                             );
                         })}
