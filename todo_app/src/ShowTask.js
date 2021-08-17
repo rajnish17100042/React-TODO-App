@@ -1,13 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 
 let editTask = (index, task) => {
     // alert(`The task you want to delete is:${task} and the index of this task is:${index} `);
     alert(`current task is : "${task}" `);
-    const newtask = window.prompt("Enter the Edited task:");
+    let newtask = window.prompt("Enter the Edited task:");
     //remove white spaces from start and end 
     newtask = newtask.trim();
-    console.log(newtask);
+    // console.log(newtask);
+
+    // input task  validation
+    if (newtask === '') {
+        alert("Please Enter a task");
+        return;
+    }
+
+
+
+    // now get data from the local storage
+    let storedtask = localStorage.getItem('localstorage');
+    let taskobj = JSON.parse(storedtask);
+
+    taskobj[index] = newtask;
+
+
+
+    // send the data back to the local storage
+    localStorage.setItem('localstorage', JSON.stringify(taskobj));
+
+    //reload the page
+    window.location.reload();
 }
 
 
@@ -21,7 +43,7 @@ let deleteTask = (index) => {
 
     let finaldelete = window.confirm("Have you completed the task?? want to delete??");
 
-    if (finaldelete == true) {
+    if (finaldelete === true) {
         let storedtask = localStorage.getItem('localstorage');
         let taskobj = JSON.parse(storedtask);
 
@@ -36,7 +58,8 @@ let deleteTask = (index) => {
         // now send the taskobj  to the lolcal storage
         localStorage.setItem('localstorage', JSON.stringify(taskobj));
 
-
+        //reload the page
+        window.location.reload();
 
     }
 
@@ -47,7 +70,7 @@ const ShowTask = () => {
     // get all the task from local storage
     let storedtask = localStorage.getItem('localstorage');
     // alert(storedtask);
-    if (storedtask == null) {
+    if (storedtask === null) {
         // alert('nothing to show');
         return null;
 
