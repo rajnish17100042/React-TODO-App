@@ -24,7 +24,7 @@ const AddTask = () => {
     //on clicking the add task button this function will be called
     const addTask = () => {
 
-        if (inputdata == '') {
+        if (inputdata === '') {
             alert("Please Enter a task");
             return;
         }
@@ -42,7 +42,7 @@ const AddTask = () => {
         let storedtask = localStorage.getItem('localstorage');
         // alert(storedtask);
         let taskobj;
-        if (storedtask == null) {
+        if (storedtask === null) {
             // creaye an empty array
             taskobj = [];
         }
