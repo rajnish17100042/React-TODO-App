@@ -4,7 +4,7 @@ import React from 'react';
 let editTask = (index, task) => {
     // alert(`The task you want to delete is:${task} and the index of this task is:${index} `);
     alert(`current task is : "${task}" `);
-    let newtask = window.prompt("Enter the Edited task:");
+    let newtask = prompt("Enter the Edited task:");
     //remove white spaces from start and end 
     newtask = newtask.trim();
     // console.log(newtask);
@@ -88,10 +88,10 @@ const ShowTask = () => {
                                 <tr>
                                     <td>{index + 1}</td>
                                     <td>{task}</td>
-                                    <td><button type="button" class="text-primary" onClick={() => { editTask(index, task) }}>Edit</button></td>
+                                    <td><button type="button" className="text-primary" onClick={() => { editTask(index, task) }}>Edit</button></td>
                                     {/* <td><button type="button" class="text-danger" onClick={deleteTask(index)}>Delete</button></td> */}
                                     {/* we need to use arrow function if we want to send some data as an argument */}
-                                    <td><button type="button" class="text-danger" onClick={() => { deleteTask(index) }}>Delete</button></td>
+                                    <td><button type="button" className="text-danger" onClick={() => { deleteTask(index) }}>Delete</button></td>
                                 </tr>
                             );
                         })}
